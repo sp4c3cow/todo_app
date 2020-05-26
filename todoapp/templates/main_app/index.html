@@ -1,0 +1,16 @@
+{% extends 'main_app/base.html' %}
+{% block content %}
+    <div class="container">
+        <h5>ToDo's</h5>
+        <ul class='list-group'>
+        {% for t in todo %}
+            <li class='list-group-item'>{{ t.task_name }} <span class="badge badge-primary">{{ t.status }}</span> 
+                <form action="{% url 'main_app:delete' t.id %}" method="POST" class="float-right d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock content %}
